@@ -1,0 +1,7 @@
+include/credentials.h
+# Archivos y carpetas de PlatformIO y VSCode
+.vscode/
+.pio/
+
+# Opcional: Si quieres ignorar tus credenciales
+# Descomenta la siguiente línea para que credentials.h no se suba
