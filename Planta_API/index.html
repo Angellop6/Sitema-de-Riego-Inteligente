@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subir Foto</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #d9f1ff, #ffffff);
+      font-family: "Segoe UI", sans-serif;
+    }
+    .upload-card {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+    .preview-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: none;
+    }
+    .btn-upload {
+      background-color: #0078ff;
+      color: white;
+      font-weight: 500;
+      border-radius: 12px;
+      padding: 10px 20px;
+    }
+    .btn-upload:hover {
+      background-color: #005fcc;
+      color: white;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-card">
+    <h3><i class="bi bi-cloud-arrow-up-fill"></i> Subir Foto</h3>
+    <p class="text-muted">Solo se mostrará la última imagen subida 📸</p>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <div class="mb-3">
+        <input type="file" name="file" id="fileInput" class="form-control" accept="image/*" capture="camera" required>
+      </div>
+      <button type="submit" class="btn btn-upload w-100">
+        <i class="bi bi-upload"></i> Subir Imagen
+      </button>
+    </form>
+
+    {% if message %}
+    <div class="alert alert-info mt-3">{{ message }}</div>
+    {% endif %}
+
+    <img id="preview" class="preview-img" alt="Vista previa">
+
+    {% if images %}
+    <h5 class="mt-4">🖼️ Última imagen subida:</h5>
+    <div class="gallery mt-3">
+      <img src="{{ url_for('uploaded_file', filename=images[0]) }}" alt="{{ images[0] }}">
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    const input = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('change', () => {
+      const file = input.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

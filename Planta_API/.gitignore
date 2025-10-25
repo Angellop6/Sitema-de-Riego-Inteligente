@@ -1,0 +1,49 @@
+# === Archivos de entorno y configuraciones privadas ===
+.env
+*.env
+
+# === Archivos temporales / compilados ===
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# === Archivos de logs y backups ===
+*.log
+*.bak
+*.swp
+*.tmp
+
+# === Carpeta de subidas (no queremos subir fotos al repo) ===
+uploads/
+uploads/*
+
+# === Archivos generados por Flask o VSCode ===
+instance/
+*.pid
+*.seed
+*.cover
+.env.bak
+
+# === Directorios de entorno virtual ===
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# === Archivos de sistema ===
+.DS_Store
+Thumbs.db
+
+# === Caché y metadata ===
+.cache/
+.pytest_cache/
+.idea/
+.vscode/
+
+# === Archivos de despliegue temporales ===
+*.tar.gz
+*.zip
